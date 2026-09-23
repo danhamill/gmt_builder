@@ -40,13 +40,14 @@ jobs:
         run: |
           micromamba run -n gmt gmt --version
 
-      - name: Create ZIP archive from .gmt
+      - name: Create ZIP archive from GMT venv only
         run: |
+          $venvPath = Join-Path $env:GITHUB_WORKSPACE ".gmt\envs\gmt"
           $zipPath = Join-Path $env:GITHUB_WORKSPACE "gmt-windows.zip"
           if (Test-Path $zipPath) {
             Remove-Item $zipPath -Force
           }
-          Compress-Archive -Path (Join-Path $env:GITHUB_WORKSPACE ".gmt") `
+          Compress-Archive -Path $venvPath `
             -DestinationPath $zipPath `
             -CompressionLevel Optimal
 
