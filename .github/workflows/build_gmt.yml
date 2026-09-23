@@ -34,6 +34,7 @@ jobs:
           create-args: >-
             -c conda-forge
             gmt
+            esmf=8.4.2
           post-cleanup: none
 
       - name: Verify GMT was installed
